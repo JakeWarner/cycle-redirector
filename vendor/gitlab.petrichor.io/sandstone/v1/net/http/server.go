@@ -105,7 +105,8 @@ func (s *Server) listen(ln net.Listener, h http.Handler) error {
 			identifier = s.identifyFn(ip)
 		}
 
-		s.lg.Debugf("Serving request %-5s %-35s (%s)", r.Method, r.RequestURI, identifier)
+		// total padded length of 100 to line up with socketserv
+		s.lg.Debugf("Serving request %-10s %-73s (%s)", r.Method, r.RequestURI, identifier)
 
 		h.ServeHTTP(w, r)
 	})

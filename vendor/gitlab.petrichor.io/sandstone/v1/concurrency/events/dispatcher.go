@@ -34,8 +34,13 @@ func (d *Dispatcher) Call(fn BindingFn) (l *listener) {
 
 func (d *Dispatcher) listeners(trigger string) (bs []*binding) {
 	for _, l := range d.ls {
+		if l.all {
+			bs = append(bs, l.binding)
+			continue
+		}
+
 		for _, v := range l.triggers {
-			if v == trigger {
+			if v == trigger{
 				bs = append(bs, l.binding)
 			}
 		}

@@ -8,10 +8,19 @@ type listener struct {
 	binding  *binding
 	triggers []string
 	priority int
+	all bool
 }
 
 func (l *listener) On(triggers ...string) *listener {
 	l.triggers = append(l.triggers, triggers...)
+
+	l.sort()
+
+	return l
+}
+
+func (l *listener) All() *listener {
+	l.all = true
 
 	l.sort()
 

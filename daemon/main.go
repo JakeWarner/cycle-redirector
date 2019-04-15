@@ -12,7 +12,7 @@ import (
 	"gitlab.petrichor.io/sandstone/v1/log"
 )
 
-var version = "0.1.0"
+var version = "2019.04.14"
 
 func main() {
 	builds.SetLog(log.Default)
@@ -60,10 +60,6 @@ func start(ctx context.Context) error {
 func stop() error {
 	if err := events.DefaultDispatcher.Fire("stop", nil); err != nil {
 		log.Default.Errorf("Error while stopping: %s", err.Error())
-	}
-
-	if err := server.Stop(); err != nil {
-		return err
 	}
 
 	return nil
