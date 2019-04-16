@@ -44,7 +44,7 @@ func Listen(ctx context.Context) (err error) {
 
 	s := httpHelper.NewServer(log.New("HTTP"))
 
-	tcpAddr, err := net.ResolveTCPAddr("", ":::80")
+	tcpAddr, err := net.ResolveTCPAddr("", "::80")
 	if err != nil {
 		return stackerr.Wrap(err, "Could not resolve tcp address")
 	}
